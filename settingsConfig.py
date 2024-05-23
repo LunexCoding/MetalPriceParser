@@ -18,6 +18,13 @@ class _SettingsConfig:
             chrome=Path(config("DRIVERS_DIRECTORY")) / config("CHROME_DRIVER"),
             firefox=Path(config("DRIVERS_DIRECTORY")) / config("FIREFOX_DRIVER")
         )
+        __settings["DATA"] = dict(
+            directory=config("DATA_DIRECTORY"),
+            pricesFile=Path(config("DATA_DIRECTORY")) / config("DATA_PRICES_FILE")
+        )
+        __settings["DIRECTORIES"] = [
+            __settings["DATA"]["directory"]
+        ]
         return __settings
 
     @property
@@ -27,6 +34,14 @@ class _SettingsConfig:
     @property
     def DriversSettings(self):
         return self.__settingsConfigDB["DRIVERS"]
+
+    @property
+    def Data(self):
+        return self.__settingsConfigDB["DATA"]
+
+    @property
+    def Directories(self):
+        return self.__settingsConfigDB["DIRECTORIES"]
 
 
 g_settingsConfig = _SettingsConfig()

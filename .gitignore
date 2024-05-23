@@ -4,3 +4,4 @@ venv/
 drivers/chromedriver.exe
 drivers/geckodriver.exe
 logs/
+data/

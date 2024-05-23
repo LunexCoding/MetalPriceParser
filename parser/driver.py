@@ -6,7 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import (NoSuchElementException, NoSuchDriverException, SessionNotCreatedException,
     TimeoutException, JavascriptException)
 
-from consts import SELECTOR_TYPES, DRIVER_SETTINGS
+from parser.consts import SELECTOR_TYPES, DRIVER_SETTINGS
 from tools.logger import logger
 
 
