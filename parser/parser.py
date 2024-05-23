@@ -64,5 +64,5 @@ class Parser:
 
     @staticmethod
     def _writeData(data):
-        with open(g_settingsConfig.Data["pricesFile"], "w", encoding='utf-8') as outfile:
+        with open(g_settingsConfig.Data["pricesFile"], "w", encoding="utf-8") as outfile:
             json.dump(data, outfile, ensure_ascii=False, indent=4)
