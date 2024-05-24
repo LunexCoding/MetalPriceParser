@@ -14,6 +14,8 @@ class BaseWindow(CTk):
 
     def changeContext(self, contextClass, data=None):
         if contextClass is not None:
+            if self.context is not None:
+                self.context.clear()
             self.previousContext = self.context.__class__
             self.context = contextClass(self, data)
 

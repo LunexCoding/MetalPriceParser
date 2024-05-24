@@ -4,6 +4,7 @@ class Context:
         self._data = data
 
     def clear(self):
-        for widget in self._window.winfo_children():
-            widget.destroy()
-        self._window = None
+        if self._window is not None:
+            for widget in self._window.winfo_children():
+                widget.destroy()
+            self._window = None

@@ -2,7 +2,7 @@ from customtkinter import CTkButton, CTkFrame, Y
 
 from .context import Context
 from .pricesContext import PricesContext
-from tools.readJson import getDataPrices
+from storage import g_storage
 
 
 class MainContext(Context):
@@ -23,6 +23,6 @@ class MainContext(Context):
             PricesContext,
             data={
                 "columns": ["Наименование", "Цена"],
-                "data": getDataPrices()
+                "data": g_storage.readData()
             }
         )

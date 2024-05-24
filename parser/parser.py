@@ -1,11 +1,9 @@
-import json
-
 from .driver import Browser
 from .consts import SELECTORS, DRIVER_TYPES, Constants
 
 from tools.logger import logger
 from tools.convert import convertStringToNumber
-from settingsConfig import g_settingsConfig
+from storage import g_storage
 
 
 _log = logger.getLogger(__name__)
@@ -16,7 +14,7 @@ class Parser:
     def run(cls):
         try:
             data = cls._getData()
-            cls._writeData(data)
+            cls._saveData(data)
             return True
         except Exception as e:
             _log.error(e, exc_info=True)
@@ -63,6 +61,6 @@ class Parser:
             browser.close()
 
     @staticmethod
-    def _writeData(data):
-        with open(g_settingsConfig.Data["pricesFile"], "w", encoding="utf-8") as outfile:
-            json.dump(data, outfile, ensure_ascii=False, indent=4)
+    def _saveData(data):
+        g_storage.init(data)
+        g_storage.writeData()
