@@ -37,7 +37,6 @@ class Report:
 
     def _write(self):
         path = FileSystem.createUniqueFile(g_settingsConfig.Reports["directory"] / "Report.json")
-        print(path)
         with open(path, "w", encoding="utf-8") as outfile:
             json.dump(self.data, outfile, ensure_ascii=False, indent=4)
 

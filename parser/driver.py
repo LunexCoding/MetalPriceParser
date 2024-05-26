@@ -1,5 +1,3 @@
-import time
-
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -102,50 +100,10 @@ class Browser:
             )
         return data
 
-    def clickElement(self, element):
-        try:
-            beforeCountTabs = len(self.getTabs())
-            element.click()
-            time.sleep(1)
-
-            afterCountTabs = len(self.getTabs())
-            if beforeCountTabs < afterCountTabs:
-                self.switchTab(self.getTabs()[-1])
-            if self.isOnNewPage():
-                _log.debug(f"{self.url} -> {self._driver.current_url}")
-                self.url = self._driver.current_url
-            return True
-        except Exception:
-            return False
-
-    def isOnNewPage(self):
-        if self.url != self._driver.current_url:
-            return True
-        else:
-            return False
-
-    def switchTab(self, tab):
-        try:
-            self._driver.switch_to.window(tab)
-            return True
-        except Exception:
-            return False
-
-    def getTabs(self):
-        return self._driver.window_handles
-
     def close(self):
         self._driver.quit()
         self.url = None
         _log.debug("Close browser")
-
-    @property
-    def title(self):
-        return self._driver.title
-
-    @property
-    def settings(self):
-        return self._settings
 
     @property
     def driver(self):
