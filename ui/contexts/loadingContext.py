@@ -1,6 +1,8 @@
-from customtkinter import CTkLabel, DoubleVar, CTkProgressBar
+from customtkinter import CTkLabel
 
 from .context import Context
+from .mainContext import MainContext
+from ui.widgets.progressBar import CustomProgressBar
 
 
 class LoadingContext(Context):
@@ -8,13 +10,13 @@ class LoadingContext(Context):
         super().__init__(window, data)
         self._window = window
         CTkLabel(window, text="Loading...").pack(pady=20, padx=20)
-        self.progressVar = DoubleVar()
-        self.progressBar = CTkProgressBar(self._window, variable=self.progressVar)
+        self.progressBar = CustomProgressBar(window, 0, 0.8, 1, 1)
         self.progressBar.pack(pady=20, padx=20)
-        self.progressVar.set(0)
 
-    def updateProgress(self, value):
-        self.progressVar.set(value)
+        self.progressBar.animateProgress()
 
     def complete(self):
-        self.updateProgress(100)
+        self.progressBar.setToComplete()
+        window = self._window
+        self.clear()
+        window.changeContext(MainContext)
