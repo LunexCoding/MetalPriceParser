@@ -22,8 +22,12 @@ class _SettingsConfig:
             directory=config("DATA_DIRECTORY"),
             pricesFile=Path(config("DATA_DIRECTORY")) / config("DATA_PRICES_FILE")
         )
+        __settings["REPORTS"] = dict(
+            directory=Path(config("REPORT_DIRECTORY"))
+        )
         __settings["DIRECTORIES"] = [
-            __settings["DATA"]["directory"]
+            __settings["DATA"]["directory"],
+            __settings["REPORTS"]["directory"]
         ]
         return __settings
 
@@ -38,6 +42,10 @@ class _SettingsConfig:
     @property
     def Data(self):
         return self.__settingsConfigDB["DATA"]
+
+    @property
+    def Reports(self):
+        return self.__settingsConfigDB["REPORTS"]
 
     @property
     def Directories(self):

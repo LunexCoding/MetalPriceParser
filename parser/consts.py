@@ -66,4 +66,4 @@ class SELECTORS:
 
 class Constants:
     ITEM_NAME = "Наименование"
-    ITEM_PRICE = "Цена за 1КГ"
+    ITEM_PRICE = "Цена"
